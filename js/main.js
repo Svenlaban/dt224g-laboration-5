@@ -110,8 +110,20 @@ function renderHistory() {
  */
 function clearForm() {
     // Återställ formulär och studentkort
+    form.reset();
+    // Återställer innehållet
+    previewFullname.textContent = "Namn";
+    previewEmail.textContent = "E-post";
+    previewPhone.textContent = "Telefon";
+
+    // Återställer fonterna
+    previewFullname.style.fontFamily = "";
+    previewEmail.style.fontFamily = "";
+    previewPhone.style.fontFamily = "";
 
     // Rensa eventuella felmeddelanden
+    errors = [];
+    displayErrors();
 }
 
 
