@@ -33,11 +33,23 @@ let history = [];
  * @returns {boolean}
  */
 function validateForm() {
-    // Kontrollera formulärets obligatoriska fält
+    errors = [];
 
-    // Visa eventuella felmeddelanden
+    if (fullnameInput.ariaValueMax.trim() === ""){// Kontrollera formulärets obligatoriska fält
+        errors.push("Namn saknas.");
+    }
 
-    // Returnera resultatet (true eller false) av valideringen
+    if (emailInput.value.trim() === "") {
+        errors.push("E-post saknas");
+    }
+
+    if (phoneInput.value.trim() === "") {
+        errors.push("Telefonnummer saknas");
+    }
+
+    displayErrors();// Visa eventuella felmeddelanden
+
+    return errors.length === 0;    // Returnera resultatet (true eller false) av valideringen
 }
 
 
@@ -118,10 +130,10 @@ function deleteHistory() {
 // När formuläret skickas:
 // - validera inmatningen
 // - skapa studentkort om valideringen lyckas
-form.addEventListener("submit", function (event) {
+form.addEventListener("submit", function (event) {// Submit sker när formuläret skickas
     event.preventDefault();
 
-    if (validateForm()) {
+    if (validateForm()) {//kontrollerar fälten och kör create om den ger true
         createStudentCard();
     }
 
