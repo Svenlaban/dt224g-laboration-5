@@ -84,15 +84,23 @@ function createStudentCard() {
     previewEmail.textContent = email;
     previewPhone.textContent = phone;
 
-    // Försökt till att få till fonter, behöver felsökas
+    // Använder rätt font
     previewFullname.style.fontFamily = selectedFont;
     previewEmail.style.fontFamily = selectedFont;
     previewPhone.style.fontFamily = selectedFont;
     
     
     // Lägg till studentkortet i historiken
+    const studentCard = {
+        name: fullname,
+        email: email,
+        phone: phone,
+        font: selectedFont
+    };
 
+    history.unshift(studentCard);
     // Spara och uppdatera historiken
+    renderHistory();
 }
 
 
@@ -119,8 +127,30 @@ function loadHistory() {
  */
 function renderHistory() {
     // Rensa tidigare visad historik
+    historySection.innerHTML = "";
 
     // Skriv ut innehållet i history till DOM
+    for (let index = 0; index < history.length; index++) {
+        const studentCard = history[index];
+
+        const historyItem = document.createElement("div");
+        historyItem.style.fontFamily = studentCard.font;
+
+        const nameParagraph = document.createElement("p");
+        nameParagraph.textContent = "Namn: " + studentCard.name;
+
+        const emailParagraph = document.createElement("p");
+        emailParagraph.textContent = "E-post: " + studentCard.email;
+
+        const phoneParagraph = document.createElement("p");
+        phoneParagraph.textContent = "Telefon: " + studentCard.phone;
+
+        historyItem.appendChild(nameParagraph);
+        historyItem.appendChild(emailParagraph);
+        historyItem.appendChild(phoneParagraph);
+
+        historySection.appendChild(historyItem);
+    }
 }
 
 
