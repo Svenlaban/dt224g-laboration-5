@@ -35,7 +35,7 @@ let history = [];
 function validateForm() {
     errors = [];
 
-    if (fullnameInput.ariaValueMax.trim() === ""){// Kontrollera formulärets obligatoriska fält
+    if (fullnameInput.value.trim() === ""){// Kontrollera formulärets obligatoriska fält
         errors.push("Namn saknas.");
     }
 
@@ -154,7 +154,7 @@ form.addEventListener("submit", function (event) {// Submit sker när formuläre
     if (validateForm()) {//kontrollerar fälten och kör create om den ger true
         createStudentCard();
     }
-
+});
 
 // När användaren klickar på "Rensa"
 clearButton.addEventListener("click", function () {
