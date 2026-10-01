@@ -83,6 +83,12 @@ function createStudentCard() {
     previewFullname.textContent = fullname;
     previewEmail.textContent = email;
     previewPhone.textContent = phone;
+
+    // Försökt till att få till fonter, behöver felsökas
+    previewFullname.style.fontFamily = selectedFont;
+    previewEmail.style.fontFamily = selectedFont;
+    previewPhone.style.fontFamily = selectedFont;
+    
     
     // Lägg till studentkortet i historiken
 
