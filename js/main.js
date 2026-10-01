@@ -74,9 +74,16 @@ function displayErrors() {
  */
 function createStudentCard() {
     // Hämta information från formuläret
+    const fullname = fullnameInput.value.trim();
+    const email = emailInput.value.trim();
+    const phone = phoneInput.value.trim();
+    const selectedFont = fontSelect.value;
 
     // Uppdatera studentkortet
-
+    previewFullname.textContent = fullname;
+    previewEmail.textContent = email;
+    previewPhone.textContent = phone;
+    
     // Lägg till studentkortet i historiken
 
     // Spara och uppdatera historiken
