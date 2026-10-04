@@ -100,6 +100,7 @@ function createStudentCard() {
 
     history.unshift(studentCard);
     // Spara och uppdatera historiken
+    saveHistory();
     renderHistory();
 }
 
@@ -109,6 +110,7 @@ function createStudentCard() {
  */
 function saveHistory() {
     // Spara history i localStorage
+    localStorage.setItem("studentCardHistory", JSON.stringify(history));
 }
 
 
@@ -117,8 +119,12 @@ function saveHistory() {
  */
 function loadHistory() {
     // Hämta eventuell sparad historik
+    const savedHistory = localStorage.getItem("studentCardHistory");
 
     // Uppdatera history
+    if (savedHistory !== null) {
+        history = JSON.parse(savedHistory);
+    }
 }
 
 
@@ -209,3 +215,7 @@ clearButton.addEventListener("click", function () {
 
 // När sidan laddas:
 // - läs in och visa eventuell tidigare historik
+window.addEventListener("DOMContentLoaded", function () {
+    loadHistory();
+    renderHistory();
+});
