@@ -187,8 +187,13 @@ function clearForm() {
  */
 function deleteHistory() {
     // Radera sparad historik
+    localStorage.removeItem("studentCardHistory");
+
+    // Tömmer arrayen
+    history = [];
 
     // Uppdatera history och visningen på sidan
+     renderHistory();
 }
 
 
@@ -211,7 +216,9 @@ clearButton.addEventListener("click", function () {
 });
 
 // När användaren klickar på "Radera historik"
-
+deleteHistoryButton.addEventListener("click", function () {
+    deleteHistory();
+});
 
 // När sidan laddas:
 // - läs in och visa eventuell tidigare historik
