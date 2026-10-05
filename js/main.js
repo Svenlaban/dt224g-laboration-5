@@ -34,22 +34,23 @@ let history = [];
  */
 function validateForm() {
     errors = [];
-
-    if (fullnameInput.value.trim() === ""){// Kontrollera formulärets obligatoriska fält
+    // Kontrollera formulärets obligatoriska fält
+    if (fullnameInput.value.trim() === ""){
         errors.push("Namn saknas.");
     }
 
     if (emailInput.value.trim() === "") {
-        errors.push("E-post saknas");
+        errors.push("E-post saknas.");
     }
 
     if (phoneInput.value.trim() === "") {
-        errors.push("Telefonnummer saknas");
+        errors.push("Telefonnummer saknas.");
     }
+    // Visa eventuella felmeddelanden
+    displayErrors();
 
-    displayErrors();// Visa eventuella felmeddelanden
-
-    return errors.length === 0;    // Returnera resultatet (true eller false) av valideringen
+    // Returnera resultatet (true eller false) av valideringen
+    return errors.length === 0;    
 }
 
 
@@ -84,7 +85,7 @@ function createStudentCard() {
     previewEmail.textContent = email;
     previewPhone.textContent = phone;
 
-    // Använder rätt font
+    // Använder rätt typsnitt från formuläret
     previewFullname.style.fontFamily = selectedFont;
     previewEmail.style.fontFamily = selectedFont;
     previewPhone.style.fontFamily = selectedFont;
@@ -98,7 +99,9 @@ function createStudentCard() {
         font: selectedFont
     };
 
+    // Lägg det senaste kortet först i historiken
     history.unshift(studentCard);
+
     // Spara och uppdatera historiken
     saveHistory();
     renderHistory();
@@ -171,7 +174,7 @@ function clearForm() {
     previewEmail.textContent = "E-post";
     previewPhone.textContent = "Telefon";
 
-    // Återställer fonterna
+    // Återställer typsnittet
     previewFullname.style.fontFamily = "";
     previewEmail.style.fontFamily = "";
     previewPhone.style.fontFamily = "";
@@ -202,10 +205,10 @@ function deleteHistory() {
 // När formuläret skickas:
 // - validera inmatningen
 // - skapa studentkort om valideringen lyckas
-form.addEventListener("submit", function (event) {// Submit sker när formuläret skickas
+form.addEventListener("submit", function (event) {
     event.preventDefault();
 
-    if (validateForm()) {//kontrollerar fälten och kör create om den ger true
+    if (validateForm()) {
         createStudentCard();
     }
 });
